@@ -1,26 +1,38 @@
 {
-  "name": "scte35",
+  "name": "scte35-js",
   "version": "0.2.0",
   "description": "",
-  "main": "index.js",
+  "main": "build/scte35.js",
+  "types": "build/scte35.d.ts",
   "directories": {
     "lib": "lib",
     "test": "test"
   },
+  "bin": {
+    "scte35": "scripts/scte35"
+  },
   "scripts": {
-    "clean": "rimraf dist",
+    "clean": "rimraf build",
     "pretest": "npm run clean && tsc --project ./test/tsconfig.json",
     "test": "nyc mocha --require source-map-support/register --recursive ./dist/test/**/*.test.js --require ./util/dom-shim.js",
-    "parse": "node ./scripts/cli.js",
-    "build": "tsc"
+    "posttest": "rimraf dist",
+    "build": "npm run clean && tsc"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Comcast/scte35-js.git"
   },
   "author": "Comcast VIPER",
+  "keywords": [
+    "cli",
+    "scte35"
+  ],
   "contributors": [
-    "Eric Stobbart <eric_stobbart@comcast.com>"
+    "Eric Stobbart <eric_stobbart@comcast.com>",
+    "Andrei Hetman <andrei_hetman@comcast.com"
   ],
   "license": "Apache-2.0",
   "bugs": {
@@ -28,16 +40,20 @@
   },
   "homepage": "https://github.com/Comcast/scte35-js#readme",
   "devDependencies": {
-    "@types/chai": "^4.1.7",
-    "@types/mocha": "^5.2.5",
-    "@types/node": "^10.12.17",
+    "@types/chai": "^4.2.4",
+    "@types/mocha": "^5.2.7",
+    "@types/node": "^12.12.5",
     "chai": "^4.2.0",
-    "mocha": "^5.2.0",
-    "nyc": "^13.1.0",
-    "rimraf": "^2.6.2",
-    "source-map-support": "^0.5.9",
-    "ts-node": "^7.0.1",
-    "typescript": "^3.2.2"
+    "mocha": "^6.2.2",
+    "nyc": "^14.1.1",
+    "rimraf": "^3.0.0",
+    "source-map-support": "^0.5.16",
+    "ts-node": "^8.4.1",
+    "typescript": "^3.6.4"
   },
-  "dependencies": {}
+  "dependencies": {
+    "arg": "^4.1.1",
+    "esm": "^3.2.25",
+    "inquirer": "^7.0.0"
+  }
 }
