@@ -13,15 +13,22 @@ In order to deploy changes to the demo read the README found at https://github.c
 ## SCTE35 Module
 
     // See ISCTE35 for methods & ISpliceInfoSection for results.
+
+```typescript
     import { SCTE35 } from "scte35";
+```
 
 or...
 
+```typescript
     const SCTE35 = require("scte35").SCTE35;
+```
 
 then...
 
+```typescript
     const result = SCTE35.parseFromB64("<base64 string>");
+```
 
 ## CLI
 
@@ -52,14 +59,21 @@ Parsing defaults to base 64, however hexadecimal can easily be parsed as well us
     }
 ```
 
+### Piping
+
+The parser output can be piped into other tools, such as a JSON display utility like `fx` in order to visualize the JSON object and interact with it.
+
+```terminal
+    npm i -g fx
+    scte35 /DBGAAET8J+pAP/wBQb+AAAAAAAwAi5DVUVJQAErgX+/CR9TSUdOQUw6OGlTdzllUWlGVndBQUFBQUFBQUJCQT09NwMDaJ6RZQ== | fx
+```
+
 ## TODO
 
 - Turn these TODO's into tickets
 - Support for additional splice descriptors
 - Documentation on the methods and interfaces (jsdoc)
 - Published docs (in GH wiki maybe?)
-- Command line tool to run from bin as part of the package install
-   (i.e) `npm install -g scte35-js; scte35-cli <payload>`
 - Additional testing/coverage
 - TSLint the project
 - Support for alignment stuffing
