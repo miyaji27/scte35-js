@@ -2,7 +2,7 @@
 
 Support for SCTE35 parsing in either NodeJS or a "modern" browser.
 
-# Demo
+## Demo
 
 Visit https://comcast.github.io/scte35-js/ and paste the following in the text box and hit the `Parse` button:
 
@@ -10,7 +10,7 @@ Visit https://comcast.github.io/scte35-js/ and paste the following in the text b
 
 In order to deploy changes to the demo read the README found at https://github.com/Comcast/scte35-js/tree/master/ui.
 
-# Import
+## SCTE35 Module
 
     // See ISCTE35 for methods & ISpliceInfoSection for results.
     import { SCTE35 } from "scte35";
@@ -23,14 +23,37 @@ then...
 
     const result = SCTE35.parseFromB64("<base64 string>");
 
-# CLI
+## CLI
 
-Currently supported via the source
+The parser can be executed from the bin by first installing it globally and then executing the `scte35` command:
 
-    npm run parse "/DBGAAET8J+pAP/wBQb+AAAAAAAwAi5DVUVJQAErgX+/CR9TSUdOQUw6OGlTdzllUWlGVndBQUFBQUFBQUJCQT09NwMDaJ6RZQ=="
+```terminal
+    npm i scte35 -g
+    scte35
+    > ? Please provide the SCTE-35 tag that you would like to parse
+```
 
+Parsing defaults to base 64, however hexadecimal can easily be parsed as well using the `--hex` flag
 
-## TODO:
+```terminal
+
+    #default base64
+    scte35 /DBGAAET8J+pAP/wBQb+AAAAAAAwAi5DVUVJQAErgX+/CR9TSUdOQUw6OGlTdzllUWlGVndBQUFBQUFBQUJCQT09NwMDaJ6RZQ==
+
+    #hexadecimal
+    scte35 --hex fc3046000113f09fa900fff00506fe000000000030022e4355454940012b817fbf091f5349474e414c3a386953773965516946567741414141414141414242413d3d370303689e9165
+
+    #both will output the formatted JSON
+    > {
+        "tableId": 252,
+        "selectionSyntaxIndicator": false,
+        "privateIndicator": false,
+        ...
+    }
+```
+
+## TODO
+
 - Turn these TODO's into tickets
 - Support for additional splice descriptors
 - Documentation on the methods and interfaces (jsdoc)

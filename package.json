@@ -1,5 +1,5 @@
 {
-  "name": "scte35-js",
+  "name": "scte35",
   "version": "0.2.0",
   "description": "",
   "main": "build/scte35.js",
